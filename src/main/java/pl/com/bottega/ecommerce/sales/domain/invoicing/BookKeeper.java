@@ -38,3 +38,7 @@ public class BookKeeper {
 	}
 
 }
+//test 
+//Purchase is paid
+//purchase getid == listOfPurchase.getId
+//Money
