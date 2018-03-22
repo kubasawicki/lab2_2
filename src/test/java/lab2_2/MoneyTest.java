@@ -23,5 +23,12 @@ public class MoneyTest {
     	Money money=new Money(new BigDecimal(10));
     	assertThat(money.multiplyBy(new BigDecimal(5)), Matchers.is(new Money(new BigDecimal(50))));
     }
-    
+    @Test(expected=IllegalArgumentException.class)
+    public void addMoneyTestThrowsException(){
+    	Money money=new Money(new BigDecimal(10));
+    	Currency currency=Currency.getInstance("PLN");
+    	Money moneyWithDifferentCurrency=new Money(new BigDecimal(10),currency);
+    	money.add(moneyWithDifferentCurrency);
+    }
+
 }
