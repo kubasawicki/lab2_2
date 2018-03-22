@@ -43,5 +43,11 @@ public class MoneyTest {
 		Money moneyWithDifferentCurrency=new Money(new BigDecimal(10),currency);
 		money.subtract(moneyWithDifferentCurrency);
     }
+    @Test
+    public void subtractMoneyWithCompatibleCurrencyTest() {
+    	Money money=new Money(new BigDecimal(100), Currency.getInstance("EUR"));
+    	Money money2=new Money(new BigDecimal(50), Currency.getInstance("EUR"));
+    	assertThat(money.subtract(money2), Matchers.is(new Money(new BigDecimal(50), Currency.getInstance("EUR"))));
+    }
     
 }
