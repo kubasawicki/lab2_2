@@ -33,4 +33,8 @@ public class MoneyTest {
         assertThat(pln2.greaterThan(pln1), is(true));
     }
 
+    @Test
+    public void lesserThanValueTest(){
+        assertThat(pln1.lessThan(pln2), is(true));
+    }
 }
