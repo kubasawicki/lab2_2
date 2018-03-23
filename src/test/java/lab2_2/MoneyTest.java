@@ -19,4 +19,12 @@ public class MoneyTest {
         assertThat(money.multiplyBy(value), Matchers.is(expectedMoney));
     }
     
+    @Test
+    public void moneyMultiplyByDoubleShouldReturnSameResultAsBigDecimalMultiplyMethod() {
+        Money money = new Money(new BigDecimal(27.14));
+        double value = 4.92;
+        Money expectedMoney = new Money(new BigDecimal(27.14).multiply(new BigDecimal(4.92)));
+        assertThat(money.multiplyBy(value), Matchers.is(expectedMoney));
+    }
+    
 }
