@@ -50,4 +50,11 @@ public class MoneyTest {
         Money expectedMoney = new Money(new BigDecimal(24.75 - 12.20));
         assertThat(firstMoneyEUR.subtract(secondMoneyEUR), Matchers.is(expectedMoney));
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void moneySubtractedFromOtherMoneyInOtherCurrencyShouldThrowException() {
+        Money moneyEUR = new Money(new BigDecimal(24.75));
+        Money moneyUSD = new Money(new BigDecimal(12.20), Currency.getInstance("USD"));
+        moneyEUR.subtract(moneyUSD);
+    }
 }
