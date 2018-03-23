@@ -3,6 +3,7 @@ package lab2_2;
 import static org.junit.Assert.assertThat;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 
 import org.hamcrest.Matchers;
 import org.junit.Test;
@@ -33,5 +34,12 @@ public class MoneyTest {
         Money secondMoneyEUR = new Money(new BigDecimal(14.50));
         Money expectedMoney = new Money(new BigDecimal(20.25 + 14.50));
         assertThat(firstMoneyEUR.add(secondMoneyEUR), Matchers.is(expectedMoney));
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void moneyAddedToOtherMoneyInOtherCurrencyShouldThrowException() {
+        Money moneyEUR = new Money(new BigDecimal(20.25));
+        Money moneyUSD = new Money(new BigDecimal(14.50), Currency.getInstance("USD"));
+        moneyEUR.add(moneyUSD);
     }
 }
