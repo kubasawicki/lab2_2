@@ -57,4 +57,11 @@ public class MoneyTest {
         Money moneyUSD = new Money(new BigDecimal(12.20), Currency.getInstance("USD"));
         moneyEUR.subtract(moneyUSD);
     }
+    
+    @Test
+    public void greaterMoneyShouldBeGreater() {
+        Money firstMoney = new Money(new BigDecimal(22.20));
+        Money secondMoney = new Money(new BigDecimal(22.19));
+        assertThat(firstMoney.greaterThan(secondMoney), Matchers.is(true));
+    }
 }
