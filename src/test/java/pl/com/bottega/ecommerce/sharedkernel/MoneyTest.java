@@ -10,6 +10,8 @@ public class MoneyTest {
 
     Money pln1 = new Money(10,"PLN");
     Money pln2 = new Money(25,"PLN");
+    Money pln3 = new Money(25,"PLN");
+
     @Test
     public void multiplierExpectedValueTest(){
         Money expected = new Money(100, "PLN");
@@ -37,4 +39,11 @@ public class MoneyTest {
     public void lesserThanValueTest(){
         assertThat(pln1.lessThan(pln2), is(true));
     }
+
+    @Test
+    public void lessOrEqualTest(){
+        assertThat(pln2.lessOrEquals(pln3), is(true));
+        assertThat(pln1.lessOrEquals(pln2), is(true));
+    }
+
 }
