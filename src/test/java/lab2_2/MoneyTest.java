@@ -27,4 +27,11 @@ public class MoneyTest {
         assertThat(money.multiplyBy(value), Matchers.is(expectedMoney));
     }
     
+    @Test
+    public void moneyAddedToOtherMoneyInTheSameCurrencyShouldBeAdded() {
+        Money firstMoneyEUR = new Money(new BigDecimal(20.25));
+        Money secondMoneyEUR = new Money(new BigDecimal(14.50));
+        Money expectedMoney = new Money(new BigDecimal(20.25 + 14.50));
+        assertThat(firstMoneyEUR.add(secondMoneyEUR), Matchers.is(expectedMoney));
+    }
 }
