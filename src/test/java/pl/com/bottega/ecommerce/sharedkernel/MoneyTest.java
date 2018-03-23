@@ -28,4 +28,9 @@ public class MoneyTest {
         assertThat(pln2.subtract(pln1), is(equalTo(expected)));
     }
 
+    @Test
+    public void greaterThanValueTest(){
+        assertThat(pln2.greaterThan(pln1), is(true));
+    }
+
 }
