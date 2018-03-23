@@ -22,4 +22,10 @@ public class MoneyTest {
         assertThat(pln1.add(pln2), is(equalTo(expected)));
     }
 
+    @Test
+    public void subtractValuesTest(){
+        Money expected = new Money(15, "PLN");
+        assertThat(pln2.subtract(pln1), is(equalTo(expected)));
+    }
+
 }
