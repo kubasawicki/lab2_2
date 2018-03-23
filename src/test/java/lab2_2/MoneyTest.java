@@ -42,4 +42,12 @@ public class MoneyTest {
         Money moneyUSD = new Money(new BigDecimal(14.50), Currency.getInstance("USD"));
         moneyEUR.add(moneyUSD);
     }
+    
+    @Test
+    public void moneySubtractedFromOtherMoneyInTheSameCurrencyShouldBeSubtracted() {
+        Money firstMoneyEUR = new Money(new BigDecimal(24.75));
+        Money secondMoneyEUR = new Money(new BigDecimal(12.20));
+        Money expectedMoney = new Money(new BigDecimal(24.75 - 12.20));
+        assertThat(firstMoneyEUR.subtract(secondMoneyEUR), Matchers.is(expectedMoney));
+    }
 }
