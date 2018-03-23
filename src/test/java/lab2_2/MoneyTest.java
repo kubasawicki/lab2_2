@@ -78,4 +78,11 @@ public class MoneyTest {
         Money secondMoney = new Money(new BigDecimal(12.17));
         assertThat(firstMoney.lessOrEquals(secondMoney), Matchers.is(true));
     }
+    
+    @Test
+    public void lessMoneyShouldBeLessOrEquals() {
+        Money firstMoney = new Money(new BigDecimal(12.15));
+        Money secondMoney = new Money(new BigDecimal(12.17));
+        assertThat(firstMoney.lessOrEquals(secondMoney), Matchers.is(true));
+    }
 }
