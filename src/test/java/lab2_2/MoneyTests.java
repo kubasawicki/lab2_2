@@ -47,7 +47,7 @@ public class MoneyTests {
 	}	
 	
 	@Test
-	public void MoneySubtractedFromMoneyWithTheSameCurrencyShouldReturnSameValueAsAddition() {
+	public void MoneySubtractedFromMoneyWithTheSameCurrencyShouldReturnSameValueAsSubtraction() {
 		Currency currency = Currency.getInstance("PLN");
 		Money money = new Money(new BigDecimal(1200.50), currency);
         Money money2 = new Money(new BigDecimal(200.50), currency);
@@ -64,4 +64,33 @@ public class MoneyTests {
         final Money EXPECTED = new Money(new BigDecimal(1200.50 - 200.50), currencyPLN);
         assertThat(EXPECTED, is(moneyUSD.subtract(moneyPLN)));      
 	}
+	
+	@Test
+	public void MoneyGreaterThanAnotherMoneyShouldBeGreater() {
+		Currency currency = Currency.getInstance("PLN");
+		Money money = new Money(new BigDecimal(1200.50), currency);
+        Money money2 = new Money(new BigDecimal(200.50), currency);
+        final boolean EXPECTED = true;
+        assertThat(EXPECTED, is(money.greaterThan(money2)));
+	}
+	
+	@Test
+	public void MoneyLessThanAnotherMoneyShouldBeLess() {
+		Currency currency = Currency.getInstance("PLN");
+		Money money = new Money(new BigDecimal(1200.50), currency);
+        Money money2 = new Money(new BigDecimal(200.50), currency);
+        final boolean EXPECTED = true;
+        assertThat(EXPECTED, is(money2.lessThan(money)));
+	}
+	
+	@Test
+	public void MoneyLessThanOrEqualToAnotherMoneyShouldBeLessOrEqual() {
+		Currency currency = Currency.getInstance("PLN");
+		Money money = new Money(new BigDecimal(200.50), currency);
+        Money money2 = new Money(new BigDecimal(200.50), currency);
+        Money money3 = new Money(new BigDecimal(100.50), currency);
+        final boolean EXPECTED = true;
+        assertThat(EXPECTED, is(money.lessOrEquals(money2)));
+        assertThat(EXPECTED, is(money3.lessOrEquals(money2)));
+	}	
 }
