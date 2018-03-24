@@ -4,6 +4,8 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import java.math.BigDecimal;
+import java.util.Currency;
+
 import org.junit.Test;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
@@ -27,10 +29,20 @@ public class MoneyTests {
 	
 	@Test
 	public void MoneyAddedToMoneyWithTheSameCurrencyShouldReturnSameValueAsAddition() {
-		Money money = new Money(new BigDecimal(110.37));
-        Money money2 = new Money(new BigDecimal(39.63));
-        final Money EXPECTED = new Money(new BigDecimal(110.37 + 39.63));
+		Currency currency = Currency.getInstance("PLN");
+		Money money = new Money(new BigDecimal(110.37), currency);
+        Money money2 = new Money(new BigDecimal(39.63), currency);
+        final Money EXPECTED = new Money(new BigDecimal(110.37 + 39.63), currency);
         assertThat(EXPECTED, is(money.add(money2)));
 	}
 	
+	@Test (expected = IllegalArgumentException.class)
+	public void MoneyAddedToMoneyWithAnotherCurrencyShouldThrowIllegalArgumentException() {
+		Currency currencyPLN = Currency.getInstance("PLN");
+		Currency currencyUSD = Currency.getInstance("USD");
+		Money moneyUSD = new Money(new BigDecimal(110.37), currencyUSD);
+        Money moneyPLN = new Money(new BigDecimal(39.63), currencyPLN);
+        final Money EXPECTED = new Money(new BigDecimal(110.37 + 39.63), currencyPLN);
+        assertThat(EXPECTED, is(moneyUSD.add(moneyPLN)));      
+	}	
 }
