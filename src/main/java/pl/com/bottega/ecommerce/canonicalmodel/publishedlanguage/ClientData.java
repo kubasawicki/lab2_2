@@ -40,3 +40,7 @@ public class ClientData {
 	}
 
 }
+//test 
+//Purchase is paid
+//purchase getid == listOfPurchase.getId
+//Money
