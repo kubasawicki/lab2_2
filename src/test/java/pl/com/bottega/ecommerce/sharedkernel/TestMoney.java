@@ -52,4 +52,12 @@ public class TestMoney {
 		Money moneySecond=new Money(new BigDecimal(11.20));
 		Assert.assertThat(moneyFirst.greaterThan(moneySecond), is(true));
 	}
+	
+	@Test
+	public void lessThan() {
+		Money moneyFirst=new Money(new BigDecimal(11.20));
+		Money moneySecond=new Money(new BigDecimal(12.20));
+		Assert.assertThat(moneyFirst.lessThan(moneySecond), is(true));
+	}
+	
 }
