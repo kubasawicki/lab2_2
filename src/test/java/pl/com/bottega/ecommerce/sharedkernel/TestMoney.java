@@ -41,4 +41,10 @@ public class TestMoney {
         Money testMoney = new Money(10, testCurrency);
         money.subtract(testMoney);
     }
+
+    @Test
+    public void substractMoneyObjects() {
+        Money testMoney = new Money(5);
+        assertThat(money.subtract(testMoney), is(new Money(5)));
+    }
 }
