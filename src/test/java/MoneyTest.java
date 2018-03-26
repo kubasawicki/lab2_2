@@ -4,6 +4,7 @@ import org.junit.Test;
 import pl.com.bottega.ecommerce.sharedkernel.Money;
 
 import java.math.BigDecimal;
+import java.util.Currency;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -20,5 +21,19 @@ public class MoneyTest {
     public void mulitplyingByBigDecimalShouldReturnCorrectMoney(){
         Money money = new Money(10);
         assertThat(money.multiplyBy( new BigDecimal( 10 ) ), Matchers.is( new Money( new BigDecimal(100) )));
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void addingMoneyWithDifferentCurrencyShouldThrowException(){
+        Money money1 = new Money(10, "PLN");
+        Money money2 = new Money(20, "EUR");
+
+        money1.add(money2);
+    }
+    @Test
+    public void addingMoneyWithSameCurrencyShouldReturnCorrectMoney(){
+        Money money1 = new Money(10, "PLN");
+        Money money2 = new Money(20, "PLN");
+
+        assertThat( money1.add(money2), is(new Money(30, "PLN")) );
     }
 }
