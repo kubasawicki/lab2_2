@@ -14,4 +14,12 @@ public class TestMoney {
 		
 		Assert.assertThat(multiplyDoubleMoney, is(multiplyBigDecimalMoney));
 	}
+	
+	@Test
+	public void addingMoneyInTheSameCurrency() {
+		Money moneyFirst = new Money(new BigDecimal(12.20));
+		Money moneySecond= new Money(new BigDecimal(13.20));
+		Money result= new Money(new BigDecimal(12.20+13.20));
+		Assert.assertThat(moneyFirst.add(moneySecond), is(result));
+	}
 }
