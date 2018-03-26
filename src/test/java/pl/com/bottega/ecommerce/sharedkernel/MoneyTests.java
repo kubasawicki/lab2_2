@@ -13,6 +13,7 @@ public class MoneyTests {
     static Money oneHundredPLN;
     static Money oneHundredEUR;
     static Money twentyEUR;
+    static Money minusEightyEUR;
     static Money zero;
 
     @BeforeClass
@@ -20,6 +21,7 @@ public class MoneyTests {
         oneHundredPLN = new Money(100, "PLN");
         oneHundredEUR = new Money(100, Currency.getInstance("EUR"));
         twentyEUR = new Money(20);
+        minusEightyEUR = new Money(-80);
         zero = new Money(0);
     }
 
@@ -65,8 +67,13 @@ public class MoneyTests {
     }
 
     @org.junit.Test
-    public void oneHundredEuroShouldBeLessThanTwentyEuro() {
+    public void twentyEuroShouldBeLessThanOneHundredEuro() {
         assertThat(twentyEUR.lessThan(oneHundredEUR), is(true));
+    }
+
+    @org.junit.Test
+    public void minusEightyEURShouldBeLesThanoneHundredEuro() {
+        assertThat(minusEightyEUR.lessOrEquals(zero), is(true));
     }
 
 }
