@@ -57,5 +57,17 @@ public class MoneyTest {
 
         assertThat( money1.subtract(money2), is(new Money(-10, "PLN")) );
     }
+    @Test
+    public void getCurrencyCodeShouldReturnCorrectCurrencyCode(){
+        Money money = new Money(10, "PLN");
+
+        assertThat( money.getCurrencyCode(), is("PLN") );
+    }
+    @Test
+    public void getCurrencyShouldReturnCorrectCurrency(){
+        Money money = new Money(10, "PLN");
+
+        assertThat( money.getCurrencyCode(), is("PLN")  );
+    }
 
 }
