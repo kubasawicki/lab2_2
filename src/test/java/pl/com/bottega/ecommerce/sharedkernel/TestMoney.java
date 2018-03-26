@@ -30,8 +30,15 @@ public class TestMoney {
 
     @Test(expected = IllegalArgumentException.class)
     public void IllegalArgumentException() throws IllegalArgumentException {
+        Currency testCurr = Currency.getInstance("USD");
+        Money testMoney = new Money(10, testCurr);
+        money.add(testMoney);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void subtractIllegalArgumentException() throws IllegalArgumentException {
         Currency testCurrency = Currency.getInstance("USD");
         Money testMoney = new Money(10, testCurrency);
-        money.add(testMoney);
+        money.subtract(testMoney);
     }
 }
