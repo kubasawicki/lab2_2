@@ -30,4 +30,12 @@ public class TestMoney {
 		Money moneySecond= new Money(new BigDecimal(13.20), Currency.getInstance("PLN"));
 		moneyFirst.add(moneySecond);
 	}
+	
+	@Test
+	public void substractMoneyInTheSameCurrency() {
+		Money moneyFirst=new Money(new BigDecimal(12.20));
+		Money moneySecond=new Money(new BigDecimal(11.20));
+		Money result = new Money(new BigDecimal(12.20-11.20));
+		Assert.assertThat(moneyFirst.subtract(moneySecond), is(result));
+	}
 }
