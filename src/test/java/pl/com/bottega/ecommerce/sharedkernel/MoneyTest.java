@@ -30,13 +30,13 @@ public class MoneyTest {
     public void addPrice() throws Exception {
         Money priceEUR1 = new Money( 13.57 );
         Money priceEUR2 = new Money( 11.33 );
-        Money expectedValue = new Money( 13.57 + 11.33, "EUR" );
+        Money expectedValue = new Money( 13.57 + 11.33 );
         assertThat( priceEUR1.add( priceEUR2 ), is( expectedValue ) );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void addPriceInOtherCurrency() throws Exception {
-        Money priceEUR1 = new Money( 13.57 );
+        Money priceEUR1 = new Money( 13.57, "EUR" );
         Money priceEUR2 = new Money( 11.33, "PLN" );
         priceEUR1.add( priceEUR2 );
     }
@@ -45,13 +45,13 @@ public class MoneyTest {
     public void subtract() throws Exception {
         Money priceEUR1 = new Money( 23.57 );
         Money priceEUR2 = new Money( 10.33 );
-        Money expectedValue = new Money( 23.57 - 10.33, "EUR" );
+        Money expectedValue = new Money( 23.57 - 10.33 );
         assertThat( priceEUR1.subtract( priceEUR2 ), is( expectedValue ) );
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void subtractPriceInOtherCurrency() throws Exception {
-        Money priceEUR1 = new Money( 23.57 );
+        Money priceEUR1 = new Money( 23.57 , "EUR");
         Money priceEUR2 = new Money( 10.33, "PLN" );
         priceEUR1.subtract( priceEUR2 );
     }
