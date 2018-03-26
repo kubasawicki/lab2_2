@@ -69,5 +69,53 @@ public class MoneyTest {
 
         assertThat( money.getCurrencyCode(), is("PLN")  );
     }
+    @Test
+    public void greaterThanShouldReturnTrueWhenMoneyGreater(){
+        Money money1 = new Money( 20, "PLN");
+        Money money2 = new Money( 10, "PLN");
 
+        assertThat(money1.greaterThan(money2), is(true));
+    }
+    @Test
+    public void greaterThanShouldReturnFalseWhenMoneyLess(){
+        Money money1 = new Money( 10, "PLN");
+        Money money2 = new Money( 20, "PLN");
+
+        assertThat(money1.greaterThan(money2), is(false));
+    }
+    @Test
+    public void lessThanShouldReturnTrueWhenMoneyLess(){
+        Money money1 = new Money( 10, "PLN");
+        Money money2 = new Money( 20, "PLN");
+
+        assertThat(money1.lessThan(money2), is(true));
+    }
+    @Test
+    public void lessThanShouldReturnFalseWhenMoneyGreater(){
+        Money money1 = new Money( 20, "PLN");
+        Money money2 = new Money( 10, "PLN");
+
+        assertThat(money1.lessThan(money2), is(false));
+    }
+    @Test
+    public void lessOrEqualsShouldReturnFalseWhenMoneyGreater(){
+        Money money1 = new Money( 20, "PLN");
+        Money money2 = new Money( 10, "PLN");
+
+        assertThat(money1.lessOrEquals(money2), is(false));
+    }
+    @Test
+    public void lessOrEqualsShouldReturnTrueWhenMoneyLesser(){
+        Money money1 = new Money( 9, "PLN");
+        Money money2 = new Money( 10, "PLN");
+
+        assertThat(money1.lessOrEquals(money2), is(true));
+    }
+    @Test
+    public void lessOrEqualsShouldReturnTrueWhenMoneyEquals(){
+        Money money1 = new Money( 10, "PLN");
+        Money money2 = new Money( 10, "PLN");
+
+        assertThat(money1.lessOrEquals(money2), is(true));
+    }
 }
