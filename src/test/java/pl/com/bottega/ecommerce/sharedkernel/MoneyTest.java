@@ -16,5 +16,20 @@ public class MoneyTest {
         assertThat( priceEUR.multiplyBy( multiplier ), is( expectedValue ) );
     }
 
+    @Test
+    public void addPrice() throws Exception {
+        Money priceEUR1 = new Money( 13.57 );
+        Money priceEUR2 = new Money( 11.33 );
+        Money expectedValue = new Money( 13.57 + 11.33, "EUR" );
+        assertThat( priceEUR1.add( priceEUR2 ), is( expectedValue ) );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void addPriceInOtherCurrency() throws Exception {
+        Money priceEUR1 = new Money( 13.57 );
+        Money priceEUR2 = new Money( 11.33, "PLN" );
+        priceEUR1.add( priceEUR2 );
+    }
+
 
 }
