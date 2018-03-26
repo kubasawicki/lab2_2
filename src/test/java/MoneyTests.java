@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MoneyTests {
@@ -53,5 +54,54 @@ public class MoneyTests {
         Money money1 = new Money(99.99, "EUR");
         Money money2 = new Money(39.99, "GBP");
         money1.add(money2);
+    }
+
+    @Test
+    public void moneyWithDifferentCurrenciesButSameDenominationShouldNotBeEqual() {
+        Money money1 = new Money(25.0, "EUR");
+        Money money2 = new Money(25.0, "USD");
+        assertThat(money1, is(not(equalTo(money2))));
+    }
+
+    @Test
+    public void moneyWithTheSameCurrenciesButDifferentDenominationShouldNotBeEqual() {
+        Money money1 = new Money(2.50, "CHF");
+        Money money2 = new Money(1.49, "CHF");
+        assertThat(money1, is(not(equalTo(money2))));
+    }
+
+    @Test
+    public void moneyWithTheSameCurrenciesAndDenominationShouldBeEqual() {
+        Money money1 = new Money(100.0, "PLN");
+        Money money2 = new Money(100.0, "PLN");
+        assertThat(money1, is((equalTo(money2))));
+    }
+
+    @Test
+    public void denominationOfOneMoneyShouldBeGreaterThanTheOther() {
+        Money money1 = new Money(60.0);
+        Money money2 = new Money(40.0);
+        assertThat(money1.greaterThan(money2), is(true));
+    }
+
+    @Test
+    public void denominationOfOneMoneyShouldBeLessThanTheOther() {
+        Money money1 = new Money(30.0);
+        Money money2 = new Money(70.0);
+        assertThat(money1.lessThan(money2), is(true));
+    }
+
+    @Test
+    public void denominationOfOneMoneyShouldBeLessOrEqualToTheOther() {
+        Money money1 = new Money(69.99);
+        Money money2 = new Money(120.50);
+        assertThat(money1.lessOrEquals(money2), is(true));
+    }
+
+    @Test
+    public void denominationOfOneMoneyShouldBeLessOrEqualToTheOtherWithTheSameDenomination() {
+        Money money1 = new Money(10.0);
+        Money money2 = new Money(10.0);
+        assertThat(money1.lessOrEquals(money2), is(true));
     }
 }
