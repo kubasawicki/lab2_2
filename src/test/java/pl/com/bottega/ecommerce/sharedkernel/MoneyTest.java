@@ -2,6 +2,8 @@ package pl.com.bottega.ecommerce.sharedkernel;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -9,9 +11,17 @@ public class MoneyTest {
 
 
     @Test
-    public void multiplyBy() throws Exception {
+    public void multiplyByDouble() throws Exception {
         Money priceEUR = new Money( 13.57 );
         double multiplier = 6.12;
+        Money expectedValue = new Money( 13.57 * 6.12 );
+        assertThat( priceEUR.multiplyBy( multiplier ), is( expectedValue ) );
+    }
+
+    @Test
+    public void multiplyByDecimal() throws Exception {
+        Money priceEUR = new Money( 13.57 );
+        BigDecimal multiplier = new BigDecimal( 6.12 );
         Money expectedValue = new Money( 13.57 * 6.12 );
         assertThat( priceEUR.multiplyBy( multiplier ), is( expectedValue ) );
     }
@@ -42,7 +52,7 @@ public class MoneyTest {
     @Test(expected = IllegalArgumentException.class)
     public void subtractPriceInOtherCurrency() throws Exception {
         Money priceEUR1 = new Money( 23.57 );
-        Money priceEUR2 = new Money( 10.33 , "PLN");
+        Money priceEUR2 = new Money( 10.33, "PLN" );
         priceEUR1.subtract( priceEUR2 );
     }
 
