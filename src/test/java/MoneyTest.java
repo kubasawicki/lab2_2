@@ -36,4 +36,26 @@ public class MoneyTest {
 
         assertThat( money1.add(money2), is(new Money(30, "PLN")) );
     }
+    @Test(expected = IllegalArgumentException.class)
+    public void subtractingMoneyWithDifferentCurrencyShouldThrowException(){
+        Money money1 = new Money(10, "PLN");
+        Money money2 = new Money(20, "EUR");
+
+        money1.subtract(money2);
+    }
+    @Test
+    public void subtractingMoneyWithSameCurrencyAndBiggerMinuendShouldReturnCorrectPositiveMoney(){
+        Money money1 = new Money(20, "PLN");
+        Money money2 = new Money(10, "PLN");
+
+        assertThat( money1.subtract(money2), is(new Money(10, "PLN")) );
+    }
+    @Test
+    public void subtractingMoneyWithSameCurrencyAndLowerMinuendShouldReturnCorrectNegativeMoney(){
+        Money money1 = new Money(10, "PLN");
+        Money money2 = new Money(20, "PLN");
+
+        assertThat( money1.subtract(money2), is(new Money(-10, "PLN")) );
+    }
+
 }
