@@ -46,6 +46,32 @@ public class MoneyTest {
         priceEUR1.subtract( priceEUR2 );
     }
 
+    @Test
+    public void greaterThan() throws Exception {
+        Money priceEUR1 = new Money( 23.57 );
+        Money priceEUR2 = new Money( 10.33 );
+        assertThat( priceEUR1.greaterThan( priceEUR2 ), is( true ) );
+    }
 
+    @Test
+    public void lessThan() throws Exception {
+        Money priceEUR1 = new Money( 23.57 );
+        Money priceEUR2 = new Money( 10.33 );
+        assertThat( priceEUR2.lessThan( priceEUR1 ), is( true ) );
+    }
+
+    @Test
+    public void checkEquals() throws Exception {
+        Money priceEUR1 = new Money( 11.11 );
+        Money priceEUR2 = new Money( 11.11 );
+        assertThat( priceEUR1.lessOrEquals( priceEUR2 ), is( true ) );
+    }
+
+    @Test
+    public void checkLess() throws Exception {
+        Money priceEUR1 = new Money( 11.11 );
+        Money priceEUR2 = new Money( 12.11 );
+        assertThat( priceEUR1.lessOrEquals( priceEUR2 ), is( true ) );
+    }
 
 }
