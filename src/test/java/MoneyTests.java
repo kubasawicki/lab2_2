@@ -24,4 +24,34 @@ public class MoneyTests {
         BigDecimal multiplier = new BigDecimal(8.0);
         assertThat(money.multiplyBy(multiplier), is(equalTo(expected)));
     }
+
+    @Test
+    public void addedMoneyShouldBeEqualToExpectedMoney() {
+        Money expected = new Money(new BigDecimal(15.0));
+        Money money1 = new Money(6.5);
+        Money money2 = new Money(8.5);
+        assertThat(money1.add(money2), is(equalTo(expected)));
+    }
+
+    @Test
+    public void subtractedMoneyShouldBeEqualToExpectedMoney() {
+        Money expected = new Money(new BigDecimal(20.0));
+        Money money1 = new Money(30.0);
+        Money money2 = new Money(10.0);
+        assertThat(money1.subtract(money2), is(equalTo(expected)));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void additionOfMoneyWithDifferentCurrenciesShouldThrowIllegalArgumentException() {
+        Money money1 = new Money(39.99, "CNY");
+        Money money2 = new Money(61.01, "PLN");
+        money1.add(money2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void subtractionOfMoneyWithDifferentCurrenciesShouldThrowIllegalArgumentException() {
+        Money money1 = new Money(99.99, "EUR");
+        Money money2 = new Money(39.99, "GBP");
+        money1.add(money2);
+    }
 }
