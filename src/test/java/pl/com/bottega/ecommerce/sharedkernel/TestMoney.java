@@ -38,4 +38,11 @@ public class TestMoney {
 		Money result = new Money(new BigDecimal(12.20-11.20));
 		Assert.assertThat(moneyFirst.subtract(moneySecond), is(result));
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void substractMoneyInDifferentCurrency() {
+		Money moneyFirst=new Money(new BigDecimal(12.20));
+		Money moneySecond=new Money(new BigDecimal(11.20),Currency.getInstance("PLN"));
+		moneyFirst.subtract(moneySecond);
+	}
 }
