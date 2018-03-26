@@ -77,7 +77,7 @@ public class MoneyTests {
     }
 
     @org.junit.Test
-    public void minusEightyEURShouldBeLesThanoneHundredEuro() {
+    public void minusEightyEURShouldBeLesThanZero() {
         assertThat(minusEightyEUR.lessOrEquals(zero), is(true));
     }
 
