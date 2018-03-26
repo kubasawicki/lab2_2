@@ -40,11 +40,12 @@ public class MoneyTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void substractPriceInOtherCurrency() throws Exception {
+    public void subtractPriceInOtherCurrency() throws Exception {
         Money priceEUR1 = new Money( 23.57 );
-        Money priceEUR2 = new Money( 10.33 );
-        priceEUR1.add( priceEUR2 );
+        Money priceEUR2 = new Money( 10.33 , "PLN");
+        priceEUR1.subtract( priceEUR2 );
     }
+
 
 
 }
