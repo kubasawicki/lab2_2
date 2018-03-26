@@ -1,6 +1,7 @@
 package pl.com.bottega.ecommerce.sharedkernel;
 import static org.hamcrest.CoreMatchers.is;
 import java.math.BigDecimal;
+import java.util.Currency;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -21,5 +22,12 @@ public class TestMoney {
 		Money moneySecond= new Money(new BigDecimal(13.20));
 		Money result= new Money(new BigDecimal(12.20+13.20));
 		Assert.assertThat(moneyFirst.add(moneySecond), is(result));
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void addingMoneyInDifferentCurrency() {
+		Money moneyFirst = new Money(new BigDecimal(12.20));
+		Money moneySecond= new Money(new BigDecimal(13.20), Currency.getInstance("PLN"));
+		moneyFirst.add(moneySecond);
 	}
 }
