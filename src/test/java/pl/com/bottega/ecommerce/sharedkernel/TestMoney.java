@@ -45,4 +45,11 @@ public class TestMoney {
 		Money moneySecond=new Money(new BigDecimal(11.20),Currency.getInstance("PLN"));
 		moneyFirst.subtract(moneySecond);
 	}
+	
+	@Test
+	public void greaterThan() {
+		Money moneyFirst=new Money(new BigDecimal(12.20));
+		Money moneySecond=new Money(new BigDecimal(11.20));
+		Assert.assertThat(moneyFirst.greaterThan(moneySecond), is(true));
+	}
 }
