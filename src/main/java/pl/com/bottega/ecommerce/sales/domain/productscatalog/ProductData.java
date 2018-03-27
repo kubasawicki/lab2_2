@@ -34,7 +34,7 @@ public class ProductData {
 
 	
 	@SuppressWarnings("unused")
-	private ProductData(){}
+	public ProductData(){}
 	
 	ProductData(Id productId, Money price, String name, ProductType type, 
 			Date snapshotDate) {
