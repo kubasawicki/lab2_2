@@ -15,7 +15,7 @@ public class MoneyTest {
 
     @BeforeClass
     public static void setUp() {
-        testMoney = new Money(new BigDecimal(5));
+        testMoney = new Money(new BigDecimal(5), Currency.getInstance("EUR"));
     }
 
     @Test
@@ -36,11 +36,24 @@ public class MoneyTest {
         assertThat(testMoney.add(new Money(new BigDecimal(15))), is(addedMoney));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void addWithOtherCurrency() {
+        Money addedMoney = new Money(new BigDecimal(20), Currency.getInstance("PLN"));
+        testMoney.add(addedMoney);
+    }
+
     @Test
     public void subtract() {
         Money subtractedMoney = new Money(new BigDecimal(2));
         assertThat(testMoney.subtract(new Money(new BigDecimal(3))), is(subtractedMoney));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void subtractWithOtherCurrency() {
+        Money subtractedMoney = new Money(new BigDecimal(2), Currency.getInstance("PLN"));
+        testMoney.subtract(subtractedMoney);
+    }
+
 
     @Test
     public void greaterThan() {
