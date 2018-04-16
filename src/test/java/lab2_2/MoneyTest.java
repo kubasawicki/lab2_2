@@ -31,4 +31,12 @@ public class MoneyTest {
     	assertThat(money.subtract(money2), Matchers.is(new Money(new BigDecimal(50), Currency.getInstance("EUR"))));
     }
     
+    @Test(expected=IllegalArgumentException.class)
+    public void subtractMoneyExceptionTest() {
+	    Money money=new Money(new BigDecimal(10));
+		Currency currency=Currency.getInstance("PLN");
+		Money moneyWithDifferentCurrency=new Money(new BigDecimal(10),currency);
+		money.subtract(moneyWithDifferentCurrency);
+    }
+    
 }
