@@ -45,4 +45,11 @@ public class MoneyTest {
     	 assertThat(money.multiplyBy(5.0), Matchers.is(new Money(new BigDecimal(50))));
     }
     
+
+    @Test
+    public void multiplyByBigDecimalTest() {
+    	Money money=new Money(new BigDecimal(10));
+    	assertThat(money.multiplyBy(new BigDecimal(5)), Matchers.is(new Money(new BigDecimal(50))));
+    }
+    
 }
