@@ -16,4 +16,12 @@ public class MoneyTest {
     	assertThat(money.add(money2), Matchers.is(new Money(new BigDecimal(110), Currency.getInstance("EUR"))));
     }
 
+    @Test(expected=IllegalArgumentException.class)
+    public void addMoneyExceptionTest(){
+    	Money money=new Money(new BigDecimal(10));
+    	Currency currency=Currency.getInstance("PLN");
+    	Money moneyWithDifferentCurrency=new Money(new BigDecimal(10),currency);
+    	money.add(moneyWithDifferentCurrency);
+    }
+    
 }
