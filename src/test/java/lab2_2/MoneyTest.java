@@ -38,5 +38,11 @@ public class MoneyTest {
 		Money moneyWithDifferentCurrency=new Money(new BigDecimal(10),currency);
 		money.subtract(moneyWithDifferentCurrency);
     }
+ 
+    @Test
+    public void multiplyByTestDouble() {
+    	 Money money=new Money(new BigDecimal(10));
+    	 assertThat(money.multiplyBy(5.0), Matchers.is(new Money(new BigDecimal(50))));
+    }
     
 }
