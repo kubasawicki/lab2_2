@@ -3,6 +3,7 @@ package lab2_2;
 <<<<<<< HEAD
 public class MoneyTest {
 
+	
 }
 =======
 import static org.junit.Assert.assertThat;
